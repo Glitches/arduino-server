@@ -1,0 +1,14 @@
+{
+  "name": "arduino-server",
+  "version": "0.0.1",
+  "description": "Express node js server controlling arduino",
+  "main": "index.js",
+  "repository": "https://www.github.com/glitches/arduino-server",
+  "author": "Andrea Ceccarelli <gltch2003@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.16.2",
+    "johnny-five": "^0.14.1"
+  }
+}
