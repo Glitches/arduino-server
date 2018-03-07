@@ -46,17 +46,28 @@ app
       console.log(e);
     }
   })
-  .get('/fade', (req, res) => {
+  .get('/fade', async (req, res) => {
+    const { time } = req.query;
     // Light fader
-    led.fade({
-      easing: 'outSine',
-      duration: 1000,
-      cuePoints: [0, 0.2, 0.4, 0.6, 0.8, 1],
-      keyFrames: [0, 250, 25, 150, 100, 125],
-      onstop: function() {
-        console.log('Animation stopped');
+    console.log(time);
+    const fade = new Promise((resolve, reject) => {
+      try {
+        const ledNew = new five.Led(11);
+        ledNew.fadeIn();
+        setTimeout(() => {
+          ledNew.fadeOut();
+        }, time);
+      } catch (e) {
+        console.log('Fade error: ' + e);
+        reject(400);
       }
+      resolve(200);
     });
-    res.status(200).end();
+    try {
+      const val = await fade;
+      res.sendStatus(val);
+    } catch (e) {
+      console.log(e);
+    }
   })
   .listen(Port, () => console.log('Server running on port ', Port));
