@@ -29,10 +29,22 @@ app
       console.log(e);
     }
   })
-  .get('/off', (req, res) => {
+  .get('/off', async (req, res) => {
     // Turn off the strobe
-    led.stop();
-    res.status(200).end();
+    const stop = new Promise((resolve, reject) => {
+      try {
+        led.stop();
+        resolve(200);
+      } catch (e) {
+        reject(400);
+      }
+    });
+    try {
+      const val = await stop;
+      res.status(val).end();
+    } catch (e) {
+      console.log(e);
+    }
   })
   .get('/fade', (req, res) => {
     // Light fader
