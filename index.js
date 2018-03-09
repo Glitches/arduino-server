@@ -1,6 +1,8 @@
 require('dotenv');
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
 const five = require('johnny-five');
 const board = new five.Board();
 const Port = process.env.PORT || 5000;
@@ -12,6 +14,7 @@ board.on('ready', () => {
 });
 
 app
+  .use(cors())
   .get('/', async (req, res) => {
     // Strobe the pin on/off, defaults to 100ms phases
     const strobe = new Promise((resolve, reject) => {
