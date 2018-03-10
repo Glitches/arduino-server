@@ -5,6 +5,7 @@ const StrobeOn = async (req, res) => {
     const val = await ledModel.strobeOn();
     res.sendStatus(val);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
   }
 };
@@ -14,17 +15,19 @@ const StrobeOff = async (req, res) => {
     const val = await ledModel.strobeOff();
     res.status(val).end();
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
   }
 };
 
 const FadeLed = async (req, res) => {
   const { time } = req.query;
-  console.log(time);
+  //  console.log(time);
   try {
     const val = await ledModel.fadeLed(time);
     res.sendStatus(val);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
   }
 };
