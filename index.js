@@ -59,7 +59,7 @@ app
         ledNew.fadeIn();
         setTimeout(() => {
           ledNew.fadeOut();
-        }, time);
+        }, time || 1000);
       } catch (e) {
         console.log('Fade error: ' + e);
         reject(400);
