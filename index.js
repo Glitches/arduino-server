@@ -9,4 +9,8 @@ const Port = process.env.PORT || 5000;
 app
   .use(cors())
   .use(router)
-  .listen(Port, () => console.log('Server running on port ', Port));
+  .listen(Port, () =>
+    console.log(`==============================\n
+Server running on port: ${Port} \n
+==============================\n`)
+  );
