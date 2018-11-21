@@ -1,14 +1,12 @@
-'use strict';
+import BoardConfig from '../BoardConfig';
 
-const five = require('johnny-five');
-const board = new five.Board();
 let led;
 let fadingLed;
 
-board.on('ready', () => {
+BoardConfig.Board.on('ready', () => {
   // Create an Led on pin 13
-  led = new five.Led(13);
-  fadingLed = new five.Led(11);
+  led = new BoardConfig.Five.Led(13);
+  fadingLed = new BoardConfig.Five.Led(11);
 });
 
 // Strobe the pin on/off, defaults to 100ms phases
@@ -17,6 +15,7 @@ const strobeOn = () => {
     try {
       led.strobe();
     } catch (e) {
+      console.log(BoardConfig);
       reject(400);
     }
     resolve(200);
@@ -51,7 +50,7 @@ const fadeLed = time => {
   });
 };
 
-module.exports = {
+export default {
   strobeOn: strobeOn,
   strobeOff: strobeOff,
   fadeLed: fadeLed

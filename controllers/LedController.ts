@@ -1,8 +1,9 @@
 'use strict';
-const ledModel = require('../models/ledModel');
+import LedModel from '../models/LedModel';
+
 const StrobeOn = async (req, res) => {
   try {
-    const val = await ledModel.strobeOn();
+    const val = await LedModel.strobeOn();
     res.sendStatus(val);
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -12,7 +13,7 @@ const StrobeOn = async (req, res) => {
 
 const StrobeOff = async (req, res) => {
   try {
-    const val = await ledModel.strobeOff();
+    const val = await LedModel.strobeOff();
     res.status(val).end();
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -24,7 +25,7 @@ const FadeLed = async (req, res) => {
   const { time } = req.query;
   //  console.log(time);
   try {
-    const val = await ledModel.fadeLed(time);
+    const val = await LedModel.fadeLed(time);
     res.sendStatus(val);
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -32,7 +33,7 @@ const FadeLed = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   StrobeOn: StrobeOn,
   StrobeOff: StrobeOff,
   FadeLed: FadeLed
